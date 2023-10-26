@@ -20,8 +20,9 @@ namespace ProjectApiCompanyCTECH.Controllers
         }
 
         [Route("createEmployee")]
+        [Consumes("multipart/form-data")]
         [HttpPost]
-        public async Task<object> Create( EmployeeCreateRequest request)
+        public async Task<object> Create([FromForm] EmployeeCreateRequest request)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -41,7 +42,7 @@ namespace ProjectApiCompanyCTECH.Controllers
 
                     return response;
                 }
-                if (string.IsNullOrEmpty(request.Phone_Number))
+                if (string.IsNullOrEmpty(request.PhoneNumber))
                 {
                     response.respCode = EmployeeResponse.PhoneNumberEmpty;
                     response.respMsg = EmployeeResponse.PhoneNumberEmptyMsg;
@@ -117,7 +118,7 @@ namespace ProjectApiCompanyCTECH.Controllers
             BaseResponse response = new BaseResponse();
             try
             {
-                var _res = await _employeeService.DeleteEmployee(id);
+                await _employeeService.DeleteEmployee(id);
                
                 response.respCode = SystemResponse.Success;
                 response.respMsg = SystemResponse.SuccessMsg;

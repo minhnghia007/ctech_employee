@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjectApiCompanyCTECH.Entities;
 using ProjectApiCompanyCTECH.Model;
+using System.Reflection.Emit;
+using System;
 
 namespace ProjectApiCompanyCTECH.MainEntitites.EntityConfigurations
 {
@@ -15,13 +17,13 @@ namespace ProjectApiCompanyCTECH.MainEntitites.EntityConfigurations
             builder.Property(e => e.Birthday).IsRequired().HasColumnName("birthday");
             builder.Property(e => e.Gender).IsRequired().HasColumnName("gender");
             builder.Property(e => e.Email).IsRequired().HasMaxLength(50).HasColumnName("email");
-            builder.Property(e => e.Phone_Number).HasMaxLength(10).HasColumnName("phone_number");
+            builder.Property(e => e.PhoneNumber).HasMaxLength(10).HasColumnName("phone_number");
             builder.Property(e => e.Salary).IsRequired().HasColumnName("salary");
-            builder.Property(e => e.Department).IsRequired().HasDefaultValue().HasColumnName("department");
+            builder.Property(e => e.Department).IsRequired().HasConversion<int>().HasColumnName("department");
             builder.Property(e => e.Image).HasColumnName("image");
             builder.Property(e => e.Biography).HasMaxLength(100).IsRequired().HasColumnName("biography");
-            builder.Property(e => e.Create_Date).HasDefaultValueSql("getdate()").HasColumnName("create_date");
-            builder.Property(e => e.Modified_Date).HasDefaultValueSql("getdate()").HasColumnName("modified_date");
+            builder.Property(e => e.CreateDate).HasColumnName("create_date");
+            builder.Property(e => e.ModifiedDate).HasColumnName("modified_date");
             
 
            

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using ProjectApiCompanyCTECH.Common;
 using ProjectApiCompanyCTECH.Entities;
 using ProjectApiCompanyCTECH.Extensions;
@@ -6,8 +8,11 @@ using ProjectApiCompanyCTECH.Model.Request;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjectApiCompanyCTECH.Services
 {
@@ -35,15 +40,16 @@ namespace ProjectApiCompanyCTECH.Services
                     Birthday= request.Birthday,
                     Gender= request.Gender,
                     Email = request.Email,
-                    Phone_Number= request.Phone_Number,
+                    PhoneNumber = request.PhoneNumber,
                     Salary= request.Salary,
                     Department= request.Department,
-                    Biography= request.Biography,
-                    Image= request.Image,
-                    Create_Date = DateTime.Now,
-                    Modified_Date = DateTime.Now,
+                    Image = request.Image,
+                    Biography = request.Biography,
+                    CreateDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
                     
                 };
+                
                 _context.Employees.Add(employ);
                 return await _context.SaveChangesAsync();
             }
@@ -76,7 +82,7 @@ namespace ProjectApiCompanyCTECH.Services
         {
             var query = from p in _context.Employees
                         where p.Fullname== fullname
-                        orderby p.Modified_Date descending
+                        orderby p.ModifiedDate descending
                         select p;
                         
                        
@@ -91,13 +97,13 @@ namespace ProjectApiCompanyCTECH.Services
                     Birthday= x.Birthday,
                     Gender= x.Gender,  
                     Email= x.Email,
-                    Phone_Number    = x.Phone_Number,
+                    PhoneNumber    = x.PhoneNumber,
                     Salary = x.Salary,
                     Department= x.Department,
                     Biography= x.Biography,
                     Image= x.Image,
-                    Create_Date= x.Create_Date,
-                    Modified_Date= x.Modified_Date,
+                    CreateDate = x.CreateDate,
+                    ModifiedDate = x.ModifiedDate,
                     
                 }).ToListAsync();
 

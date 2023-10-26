@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProjectApiCompanyCTECH.Common;
 using ProjectApiCompanyCTECH.Entities;
 using ProjectApiCompanyCTECH.Services;
 using System;
@@ -34,6 +35,7 @@ namespace ProjectApiCompanyCTECH
             services.AddControllers();
 
             services.AddScoped<IEmployeeService, EmployeeService>();
+            
 
             services.AddSwaggerGen(c =>
             {

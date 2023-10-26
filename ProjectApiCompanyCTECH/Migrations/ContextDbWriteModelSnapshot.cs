@@ -37,12 +37,11 @@ namespace ProjectApiCompanyCTECH.Migrations
                         .HasColumnName("birthday")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("Create_Date")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnName("create_date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("Department")
-                        .IsRequired()
+                    b.Property<int>("Department")
                         .HasColumnName("department")
                         .HasColumnType("integer");
 
@@ -67,11 +66,11 @@ namespace ProjectApiCompanyCTECH.Migrations
                         .HasColumnName("image")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("Modified_Date")
+                    b.Property<DateTime?>("ModifiedDate")
                         .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Phone_Number")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnName("phone_number")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
